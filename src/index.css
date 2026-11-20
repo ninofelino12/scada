@@ -1,1 +1,100 @@
 @import "tailwindcss";
+
+/* SCADA Dark Theme */
+:root {
+  --scada-bg: #050d18;
+  --scada-panel: #0a1628;
+  --scada-border: #1a3a5a;
+  --scada-accent: #00d4ff;
+  --scada-online: #00ff88;
+  --scada-offline: #ff4444;
+  --scada-warning: #ffaa00;
+}
+
+body {
+  background-color: var(--scada-bg);
+  font-family: 'Courier New', 'Consolas', monospace;
+  overflow-x: hidden;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scada-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scada-border);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scada-accent);
+}
+
+/* LED blink animation */
+@keyframes led-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+.led-blink {
+  animation: led-blink 1.5s ease-in-out infinite;
+}
+
+/* Pulse animation for status indicators */
+@keyframes scada-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(0, 212, 255, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(0, 212, 255, 0); }
+}
+
+.scada-pulse {
+  animation: scada-pulse 2s infinite;
+}
+
+/* Data flow animation */
+@keyframes data-flow {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -24; }
+}
+
+.data-flow-line {
+  animation: data-flow 1s linear infinite;
+}
+
+/* Glow effect */
+.glow-cyan {
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.glow-green {
+  text-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+/* Panel hover effect */
+.device-card:hover {
+  box-shadow: 0 0 20px rgba(0, 212, 255, 0.1);
+}
+
+/* Scanline effect for retro SCADA feel */
+.scanline::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 212, 255, 0.02) 2px,
+    rgba(0, 212, 255, 0.02) 4px
+  );
+  pointer-events: none;
+}
